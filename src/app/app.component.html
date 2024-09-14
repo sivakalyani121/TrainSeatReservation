@@ -1,0 +1,32 @@
+<div class="container">
+  <!-- Title of the application -->
+  <h1>Train Seat Reservation System</h1>
+
+  <!-- Input field for the user to enter the number of seats they want to book -->
+  <!-- #seatInput is a template reference variable used to capture the input value -->
+  <!-- The min and max values ensure that the user can only book between 1 and 7 seats -->
+  <input
+    #seatInput
+    type="number"
+    min="1"
+    max="7"
+    placeholder="Enter number of seats"
+  />
+
+  <!-- Button to trigger the booking process -->
+  <!-- The click event calls the `bookSeats()` method and passes the value of the input field -->
+  <button (click)="bookSeats(seatInput.value)">Book Seats</button>
+
+  <!-- Seat layout display -->
+  <div class="seat-layout">
+    <!-- Loop through the seats array and display each seat -->
+    <!-- Apply a dynamic class based on the seat's booked status: 'booked' if booked, 'available' if not booked -->
+    <div
+      *ngFor="let seat of seats"
+      [ngClass]="{ booked: seat.booked, available: !seat.booked }"
+    >
+      <!-- Display the seat number -->
+      {{ seat.seatNumber }}
+    </div>
+  </div>
+</div>
